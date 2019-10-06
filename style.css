@@ -1,0 +1,18 @@
+.container{
+    border: 1px solid blue;
+    margin: auto;
+    --grid-size: 500px;
+    width: var(--grid-size);
+    height: var(--grid-size);
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+}
+
+.gridSquare{
+    min-height: calc(var(--grid-size) / 16);
+    min-width: calc(var(--grid-size) / 16);
+}
+.gridSquareHover{
+    background-color: black;
+}
