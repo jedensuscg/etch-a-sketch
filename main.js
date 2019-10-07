@@ -78,7 +78,7 @@ function generateGrid(currentGridSize) {
     for (let i = 0; i < currentGridSize; i++) {
         let row = document.createElement("div");
         row.className = "row";
-        for (let x = 0; x <= currentGridSize; x++) {
+        for (let x = 0; x < currentGridSize; x++) {
             let cell = document.createElement("div")
             cell.className = "gridSquare";
             row.appendChild(cell);
@@ -137,13 +137,14 @@ function changeSize() {
     let grid = document.getElementById("container");
     boardSize = document.getElementById("squareSize").value;
     grid.innerHTML = "";
-    gridSize = newSize = document.getElementById("gridSize").value;
+    gridSize = document.getElementById("gridSize").value;
     console.log(changeSize)
     grid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`
     grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`
     grid.style.setProperty('--grid-squares', gridSize);
     start();
 
+ 
     boardSize = boardSize + "px";
     grid.style.setProperty('--grid-size', boardSize);
 

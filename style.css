@@ -1,18 +1,26 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
     min-width: 800px;
     --ink-color: black;
 }
 .container{
+    box-sizing: unset;
+    position: relative;
     --grid-squares: 50;
     align-self: center;
-    border: 1px solid blue;
-    margin: auto;
+    border: 10px solid rgb(255, 0, 0);
+    margin: auto auto 200px auto;
     --grid-size: 800px;
     width: var(--grid-size);
     height: var(--grid-size);
     display: grid;
+    grid-gap: 0px;
     grid-template-columns: repeat(var(--grid-squares), 1fr);
     grid-template-rows: repeat(var(--grid-squares), 1fr);
+    background-color: lightgray;
 }
 .topBar{
     min-width: 1200px;
@@ -101,6 +109,7 @@ body{
 .gridSquare{
     min-height: calc(var(--grid-size) / var(--grid-squares));
     min-width: calc(var(--grid-size) / var(--grid-squares));
+    border: 1px solid rgb(202, 200, 200);
 }
 .gridSquareBlack{
     background-color: black;
