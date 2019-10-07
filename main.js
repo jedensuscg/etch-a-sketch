@@ -1,12 +1,39 @@
 let container = document.getElementById("container");
 let gridSize = 16;
 let boardSize = 400;
+let shiftToDraw = document.getElementById("shiftDrawCheck");
+let shiftKeyPressed = false;
+
+
+var drawInk = function (e) {
+    if(shiftToDraw.checked == true) {
+        if(shiftKeyPressed){
+            console.log(shiftKeyPressed)
+            e.target.classList.add("gridSquareHover");
+        }
+    }
+    if(shiftToDraw.checked == false){
+        e.target.classList.add("gridSquareHover");
+    }
+
+};
+
 
 start();
 
-function start(){
+function start() {
+    window.addEventListener('keydown', (e) => {
+       if(e.keyCode == 16) {
+           shiftKeyPressed = true;
+       }
+    });
+    window.addEventListener('keyup', (e) => {
+        if(e.keyCode == 16){
+            shiftKeyPressed = false;
+        }
+    })
     generateGrid(gridSize);
-    fillSquare();
+    addListeners();
     showInfo();
 }
 
@@ -24,15 +51,17 @@ function generateGrid(currentGridSize) {
         container.appendChild(row);
     }
 }
-fillSquare();
 
-function fillSquare() {
+
+
+
+function addListeners() {
     let squares = document.querySelectorAll(".gridSquare");
-    squares.forEach((sqaure) => {
-        sqaure.addEventListener('mouseover', (e) => {
-            e.target.classList.add("gridSquareHover");
-        })
+
+    squares.forEach((square) => {
+        square.addEventListener('mouseover', drawInk, true)
     })
+
 }
 
 function eraseSquares() {
@@ -56,12 +85,12 @@ function changeSize() {
     grid.style.setProperty('--grid-squares', gridSize);
     start();
 
-    boardSize = boardSize +"px";
+    boardSize = boardSize + "px";
     grid.style.setProperty('--grid-size', boardSize);
 
 }
 
-function showInfo(){
+function showInfo() {
     var resolutionLabel = document.getElementById("resolutionInfo");
     var boardSizeLabel = document.getElementById("boardSize");
     var squareSizeLabel = document.getElementById("totalSquares");
